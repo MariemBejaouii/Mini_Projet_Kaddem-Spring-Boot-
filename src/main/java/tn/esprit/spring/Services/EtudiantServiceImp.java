@@ -1,7 +1,11 @@
 package tn.esprit.spring.Services;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 import tn.esprit.spring.ServicesInterface.IEtudiantService;
 import tn.esprit.spring.entity.Contrat;
 import tn.esprit.spring.entity.Departement;
@@ -14,7 +18,10 @@ import tn.esprit.spring.repository.EtudiantRepository;
 
 import java.util.List;
 @Slf4j
-@Service
+@Service@Tag(name ="EtudiantService")
+@RestController
+
+
 public class EtudiantServiceImp implements IEtudiantService {
 
     EtudiantRepository EtudiantRepository;
@@ -22,6 +29,8 @@ public class EtudiantServiceImp implements IEtudiantService {
     ContratRepository  ContratRepository;
 
     EquipeRepository EquipeRepository;
+    @Operation(description ="retrieve All Etudiants")
+    @GetMapping("/retrieveAllEtudiants")
     @Override
     public List<Etudiant> retrieveAllEtudiants() {
         List<Etudiant> Etudiants=EtudiantRepository.findAll();
@@ -31,6 +40,7 @@ public class EtudiantServiceImp implements IEtudiantService {
         }
         return Etudiants;
     }
+
 
     @Override
     public Etudiant addEtudiant(Etudiant e) {

@@ -4,11 +4,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.spring.ServicesInterface.IUniverisiteService;
-import tn.esprit.spring.entity.Etudiant;
 import tn.esprit.spring.entity.Universite;
 import tn.esprit.spring.repository.DepartementRepository;
 import tn.esprit.spring.repository.UniversiteRepository;
 import java.util.List;
+import java.util.Set;
+
 import tn.esprit.spring.entity.Departement;
 
 @Slf4j
@@ -17,6 +18,7 @@ public class UniversiteServiceImp implements IUniverisiteService  {
 
     @Autowired
     UniversiteRepository UniversiteRepository;
+    @Autowired
     DepartementRepository DepartementRepository;
 
     @Override
@@ -70,6 +72,11 @@ public class UniversiteServiceImp implements IUniverisiteService  {
 
     }
 
+    public Set<Departement> retrieveDepartementsByUniversite(Integer idUniversite) {
+
+            Universite u=UniversiteRepository.findById(idUniversite).orElse(null);
+
+            return u.getDepartement();}
 
 
 

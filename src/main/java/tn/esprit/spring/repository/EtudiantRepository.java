@@ -12,15 +12,15 @@ public interface EtudiantRepository extends JpaRepository<Etudiant, Integer> {
 
 List<Etudiant> findByDepartementIdDepart(Integer idDepart);
  // findByDepartement nom de l'association
-    List<Etudiant> findByEquipesNiveau(Niveau niveau);
+  //  List<Etudiant> findByEquipesNiveau(Niveau niveau);
 
-    List <Etudiant> findByEquipeNiveauLike(Niveau SENIOR);
+   // List <Etudiant> findByEquipeNiveauLike(Niveau SENIOR);
 
    @Query("select  et From Etudiant et where et.nomE =:nomE and et.prenomE =:prenomE")
     public Etudiant findByNomEAndPrenomE(@Param("nomE") String nomE , @Param("prenomE") String prenomE);
 
 
-   public Etudiant finfByNomLikeAndPrenomLike(String nom , String prenom);
+   public Etudiant findByNomELikeAndPrenomELike(String nom , String prenom);
 
 
 
